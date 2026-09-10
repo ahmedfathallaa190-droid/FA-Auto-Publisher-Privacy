@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FA Auto Publisher - Facebook OAuth</title>
+  <style>
+    body{
+      font-family:Arial,sans-serif;
+      text-align:center;
+      padding:50px;
+      background:#f6f7f9;
+      color:#222;
+    }
+    .box{
+      display:inline-block;
+      margin-top:18px;
+      padding:12px 18px;
+      border-radius:8px;
+      background:#1877f2;
+      color:#fff;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>جاري إكمال تسجيل الدخول</h2>
+
+  <p>يرجى الانتظار لحظات...</p>
+
+  <p id="fallback" hidden>
+    إذا لم يتم تحويلك تلقائيًا، اضغط الزر التالي:
+  </p>
+
+  <a id="go" href="#" hidden class="box">العودة إلى البرنامج</a>
+
+  <script>
+    (function(){
+      const target =
+        'http://localhost:8765/oauth/meta/callback' +
+        window.location.search +
+        window.location.hash;
+
+      const a = document.getElementById('go');
+      a.href = target;
+
+      setTimeout(function(){
+        window.location.replace(target);
+      }, 150);
+
+      setTimeout(function(){
+        document.getElementById('fallback').hidden = false;
+        a.hidden = false;
+      }, 1800);
+    })();
+  </script>
+</body>
+</html>
